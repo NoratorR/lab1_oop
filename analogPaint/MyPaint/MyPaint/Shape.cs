@@ -47,5 +47,51 @@ namespace MyPaint
         }
     }
 
+    class Draw_Triangle : Shape
+    {
 
-}
+        public override Bitmap Draw(Bitmap bmp)
+        {
+            Pen pen = new Pen(Color.Green);
+            Point[] point = { new Point(10, 10), new Point(100, 10), new Point(200, 150) };
+
+            Graphics graph = Graphics.FromImage(bmp);
+            graph.DrawPolygon(pen, point);
+
+            return bmp;
+        }
+    }
+
+    class Draw_fiveAngel : Shape
+    {
+
+        public override Bitmap Draw(Bitmap bmp)
+        {
+            Pen pen = new Pen(Color.Yellow);
+            Point[] point = { new Point(10, 10), new Point(100, 10), new Point(300, 250), new Point(150, 200), new Point(200, 150) };
+
+            Graphics graph = Graphics.FromImage(bmp);
+            graph.DrawPolygon(pen, point);
+
+            return bmp;
+        }
+    }
+
+    class Draw_sixAngel : Shape
+    {
+        public override Bitmap Draw(Bitmap bmp)
+        {
+            Pen pen = new Pen(Color.Violet);
+            Point[] point = { new Point(10, 10), new Point(100, 10), new Point(300, 250), new Point(400, 250), new Point(20, 100), new Point(150, 200) };
+
+            Graphics graph = Graphics.FromImage(bmp);
+            graph.DrawPolygon(pen, point);
+
+            return bmp;
+
+        }
+    }
+  }
+    
+
+    

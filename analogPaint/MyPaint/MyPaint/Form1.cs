@@ -52,5 +52,35 @@ namespace MyPaint
             pictureBox1.Image = Bmp;
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Draw_Triangle trn = new Draw_Triangle();
+            Bmp = trn.Draw(Bmp);
+            pictureBox1.Image = Bmp;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Draw_fiveAngel fang = new Draw_fiveAngel();
+            Bmp = fang.Draw(Bmp);
+            pictureBox1.Image = Bmp;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+            Draw_sixAngel sang = new Draw_sixAngel();
+            Bmp = sang.Draw(Bmp);
+            pictureBox1.Image = Bmp;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = null;
+            Bmp.Dispose();
+            Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Bmp = bmp;
+        }
     }
 }
