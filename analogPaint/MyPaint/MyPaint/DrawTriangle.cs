@@ -7,34 +7,18 @@ using System.Drawing;
 
 namespace MyPaint
 {
-   public abstract class Shape
+    class DrawTriangle : Shape
     {
-        public abstract Bitmap Draw(Bitmap bmp);
-    }
 
-   
-
-  
-
-   
-
-    
-
-    class DrawStrange_figure : Shape
-    {
         public override Bitmap Draw(Bitmap bmp)
         {
-            Pen pen = new Pen(Color.Gray);
-            Point[] point = { new Point(50, 200), new Point(100, 10), new Point(300, 250), new Point(400, 250), new Point(20, 100), new Point(150, 200) };
+            Pen pen = new Pen(Color.Green);
+            Point[] point = { new Point(300, 300), new Point(100, 300), new Point(200, 150) };
 
             Graphics graph = Graphics.FromImage(bmp);
             graph.DrawPolygon(pen, point);
 
             return bmp;
-
         }
     }
-  }
-    
-
-    
+}

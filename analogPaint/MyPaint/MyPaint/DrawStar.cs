@@ -7,34 +7,18 @@ using System.Drawing;
 
 namespace MyPaint
 {
-   public abstract class Shape
+    class DrawStar : Shape
     {
-        public abstract Bitmap Draw(Bitmap bmp);
-    }
 
-   
-
-  
-
-   
-
-    
-
-    class DrawStrange_figure : Shape
-    {
         public override Bitmap Draw(Bitmap bmp)
         {
-            Pen pen = new Pen(Color.Gray);
-            Point[] point = { new Point(50, 200), new Point(100, 10), new Point(300, 250), new Point(400, 250), new Point(20, 100), new Point(150, 200) };
+            Pen pen = new Pen(Color.Magenta);
+            Point[] point = { new Point(0, 0), new Point(100, 10), new Point(300, 250), new Point(150, 200), new Point(200, 150) };
 
             Graphics graph = Graphics.FromImage(bmp);
             graph.DrawPolygon(pen, point);
 
             return bmp;
-
         }
     }
-  }
-    
-
-    
+}

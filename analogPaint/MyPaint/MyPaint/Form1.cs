@@ -13,6 +13,9 @@ namespace MyPaint
     public partial class Form1 : Form
     {
         private Bitmap Bmp;
+        public List<Shape> shp = new List<Shape>();
+        private Shape temp;
+
         public Form1()
         {
             InitializeComponent();
@@ -31,54 +34,55 @@ namespace MyPaint
 
         }
 
+        private void exportDataToController(Shape tmp)
+        {
+            Bmp = tmp.Draw(Bmp);
+            shp.Add(tmp);
+            pictureBox1.Image = Bmp;
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
-            Draw_Line line = new Draw_Line();
-            Bmp = line.Draw(Bmp);
-            pictureBox1.Image = Bmp;
+            Draw_Line temp = new Draw_Line();
+            exportDataToController(temp);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Draw_Ciricle crc = new Draw_Ciricle();
-            Bmp = crc.Draw(Bmp);
-            pictureBox1.Image = Bmp;
+            DrawCiricle temp = new DrawCiricle();
+            exportDataToController(temp);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Draw_Rectangle rect = new Draw_Rectangle();
-            Bmp = rect.Draw(Bmp);
-            pictureBox1.Image = Bmp;
-
+            DrawRectangle temp = new DrawRectangle();
+            exportDataToController(temp);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Draw_Triangle trn = new Draw_Triangle();
-            Bmp = trn.Draw(Bmp);
-            pictureBox1.Image = Bmp;
+            DrawTriangle temp = new DrawTriangle();
+            exportDataToController(temp);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Draw_fiveAngel fang = new Draw_fiveAngel();
-            Bmp = fang.Draw(Bmp);
-            pictureBox1.Image = Bmp;
+            DrawStar temp = new DrawStar();
+            exportDataToController(temp);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
 
-            Draw_sixAngel sang = new Draw_sixAngel();
-            Bmp = sang.Draw(Bmp);
-            pictureBox1.Image = Bmp;
+            DrawStrangefigure temp = new DrawStrangefigure();
+            exportDataToController(temp);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = null;
             Bmp.Dispose();
+            shp.Clear();
             Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Bmp = bmp;
         }

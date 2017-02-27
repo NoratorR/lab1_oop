@@ -7,20 +7,7 @@ using System.Drawing;
 
 namespace MyPaint
 {
-   public abstract class Shape
-    {
-        public abstract Bitmap Draw(Bitmap bmp);
-    }
-
-   
-
-  
-
-   
-
-    
-
-    class DrawStrange_figure : Shape
+    class DrawStrangefigure : Shape
     {
         public override Bitmap Draw(Bitmap bmp)
         {
@@ -34,7 +21,4 @@ namespace MyPaint
 
         }
     }
-  }
-    
-
-    
+}
