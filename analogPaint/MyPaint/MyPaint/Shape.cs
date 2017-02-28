@@ -4,36 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyPaint
 {
    public abstract class Shape
     {
-        public abstract Bitmap Draw(Bitmap bmp);
+        public abstract Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second);
+        public abstract void DrawE(int x, int y, int h, int w, PaintEventArgs e);
+       
     }
 
-   
-
-  
-
-   
-
-    
-
-    class DrawStrange_figure : Shape
-    {
-        public override Bitmap Draw(Bitmap bmp)
-        {
-            Pen pen = new Pen(Color.Gray);
-            Point[] point = { new Point(50, 200), new Point(100, 10), new Point(300, 250), new Point(400, 250), new Point(20, 100), new Point(150, 200) };
-
-            Graphics graph = Graphics.FromImage(bmp);
-            graph.DrawPolygon(pen, point);
-
-            return bmp;
-
-        }
-    }
+ 
   }
     
 

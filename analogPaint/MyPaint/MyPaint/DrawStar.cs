@@ -4,21 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyPaint
 {
     class DrawStar : Shape
     {
 
-        public override Bitmap Draw(Bitmap bmp)
+        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
-            Pen pen = new Pen(Color.Magenta);
-            Point[] point = { new Point(0, 0), new Point(100, 10), new Point(300, 250), new Point(150, 200), new Point(200, 150) };
-
-            Graphics graph = Graphics.FromImage(bmp);
-            graph.DrawPolygon(pen, point);
 
             return bmp;
+        }
+        public override void DrawE(int x, int y, int h, int w, PaintEventArgs e)
+        {
+            Pen pen = new Pen(Color.Red);
+            Rectangle rect = new Rectangle(x, y, h, w);
+            e.Graphics.DrawEllipse(pen, rect);
         }
     }
 }

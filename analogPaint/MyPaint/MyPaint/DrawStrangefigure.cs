@@ -4,21 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyPaint
 {
     class DrawStrangefigure : Shape
     {
-        public override Bitmap Draw(Bitmap bmp)
+        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
-            Pen pen = new Pen(Color.Gray);
-            Point[] point = { new Point(50, 200), new Point(100, 10), new Point(300, 250), new Point(400, 250), new Point(20, 100), new Point(150, 200) };
-
-            Graphics graph = Graphics.FromImage(bmp);
-            graph.DrawPolygon(pen, point);
-
+          
             return bmp;
 
+        }
+        public override void DrawE(int x, int y, int h, int w, PaintEventArgs e)
+        {
+            Pen pen = new Pen(Color.Red);
+            Rectangle rect = new Rectangle(x, y, h, w);
+            e.Graphics.DrawEllipse(pen, rect);
         }
     }
 }
