@@ -11,7 +11,7 @@ namespace MyPaint
    public abstract class Shape
     {
         public abstract Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second);
-        public abstract void DrawE(int x, int y, int h, int w, PaintEventArgs e);
+        public abstract void DrawE(int x, int y, int h, int w, Point first, Point second,PaintEventArgs e);
        
     }
 

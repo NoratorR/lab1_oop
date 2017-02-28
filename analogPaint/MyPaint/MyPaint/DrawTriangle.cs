@@ -22,7 +22,7 @@ namespace MyPaint
 
             return bmp;
         }
-        public override void DrawE(int x, int y, int h, int w, PaintEventArgs e)
+        public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
         {
             /*
             Pen pen = new Pen(Color.Green);

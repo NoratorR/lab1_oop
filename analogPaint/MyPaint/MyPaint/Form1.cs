@@ -20,6 +20,7 @@ namespace MyPaint
         private Color Current = Color.Black;
         private Shape temp;
         private int x, y, w, h;
+        private int penWidth;
 
         public Form1()
         {
@@ -32,6 +33,10 @@ namespace MyPaint
         private void Form1_Load(object sender, EventArgs e)
         {
             DoubleBuffered = true; 
+            for (int i = 1; i <= 15; i++)
+            {
+                comboBox1.Items.Add(i);
+            }
            
         }
 
@@ -47,21 +52,21 @@ namespace MyPaint
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            DrawLine temp = new DrawLine();
+            DrawLine temp = new DrawLine(Current,penWidth);
             this.temp = temp;
           
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DrawCiricle temp = new DrawCiricle(Current);
+            DrawCiricle temp = new DrawCiricle(Current,penWidth);
             this.temp = temp;
          
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DrawRectangle temp = new DrawRectangle(Current);
+            DrawRectangle temp = new DrawRectangle(Current,penWidth);
             this.temp = temp;
            
         }
@@ -83,7 +88,7 @@ namespace MyPaint
         private void button6_Click(object sender, EventArgs e)
         {
 
-            DrawStrangefigure  temp = new DrawStrangefigure();
+            DrawStrangefigure  temp = new DrawStrangefigure(Current,penWidth);
             this.temp = temp;
 
         }
@@ -111,6 +116,16 @@ namespace MyPaint
             if (temp != null && press)
             {
                 two = e.Location;
+                if (temp is DrawLine)
+                {
+                   
+                    temp.Draw(Bmp,x, y, h, w, one, two);
+                    pictureBox1.Image = Bmp;
+                   
+                    one = two;
+
+                }
+
 
                 pictureBox1.Refresh();
                
@@ -122,9 +137,17 @@ namespace MyPaint
         {
             if (temp != null && press)
             {
-                 countCanvasPoints();
-                temp.DrawE(x,y,h,w,e);
+                if (!(temp is DrawLine))
+                {
+                    countCanvasPoints();
+                    temp.DrawE(x, y, h, w, one, two, e);
+                }
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            penWidth = Int32.Parse(comboBox1.Text);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -135,6 +158,7 @@ namespace MyPaint
               
                 Bmp = temp.Draw(Bmp, x, y, h, w, one, two);
                 pictureBox1.Image = Bmp;
+               
 
             }
            
