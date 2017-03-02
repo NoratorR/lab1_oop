@@ -73,7 +73,7 @@ namespace MyPaint
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DrawTriangle temp = new DrawTriangle();
+            DrawTriangle temp = new DrawTriangle(Current,penWidth);
             this.temp = temp;
 
         }
@@ -171,7 +171,6 @@ namespace MyPaint
                 press = true;
                 one = e.Location;
            
-            
             }
         }
 

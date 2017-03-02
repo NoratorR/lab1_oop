@@ -10,11 +10,21 @@ namespace MyPaint
 {
     class DrawTriangle : Shape
     {
-       
+
+        private Color clr;
+        private int pwidth;
+
+        public DrawTriangle(Color clr, int pwidth)
+        {
+            this.clr = clr;
+            this.pwidth = pwidth;
+        }
+
         public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
-            Pen pen = new Pen(Color.Green);
-            Point[] point = { new Point(300, 300), new Point(100, 300), new Point(200, 150) };
+            Pen pen = new Pen(clr);
+            pen.Width = pwidth;
+            Point[] point = { new Point(first.X, first.Y), new Point(second.X, second.X), new Point(first.X, second.Y) };
 
             Graphics graph = Graphics.FromImage(bmp);
             graph.DrawPolygon(pen, point);
@@ -24,12 +34,13 @@ namespace MyPaint
         }
         public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
         {
-            /*
-            Pen pen = new Pen(Color.Green);
-            PointF[] point = { new Point(300, 300), new Point}
+            
+            Pen pen = new Pen(clr);
+            pen.Width = pwidth;
+            PointF[] point = { new PointF(first.X, first.Y), new PointF(second.X,second.X), new PointF(first.X, second.Y) };
 
-            e.Graphics.DrawPolygon(pen, Point);
-            */
+            e.Graphics.DrawPolygon(pen, point);
+            
         }
     }
 }
