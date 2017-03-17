@@ -8,16 +8,15 @@ using System.Windows.Forms;
 
 namespace MyPaint
 {
-    class DrawLine : Shape
+    class DrawPencil : Shape
     {
         private Color clr;
         private int pWidth;
 
-        public DrawLine(Color clr, int pWidth)
-        {
-            this.clr = clr;
-            this.pWidth = pWidth;
-        }
+        public   DrawPencil()
+        { }
+
+       
         public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
 
@@ -34,6 +33,13 @@ namespace MyPaint
             Pen pen = new Pen(clr);
             pen.Width = pWidth;
             e.Graphics.DrawLine(pen, first.X,first.X,second.X,second.Y);
+        }
+
+        public override void getAtributs(Color clr, int pWidth)
+        {
+            this.pWidth = pWidth;
+            this.clr = clr;
+
         }
     }
 }

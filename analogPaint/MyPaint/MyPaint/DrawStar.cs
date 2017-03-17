@@ -10,6 +10,8 @@ namespace MyPaint
 {
     class DrawStar : Shape
     {
+        private Color clr;
+        private int pWidth;
 
         public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
@@ -21,6 +23,12 @@ namespace MyPaint
             Pen pen = new Pen(Color.Red);
             Rectangle rect = new Rectangle(x, y, h, w);
             e.Graphics.DrawEllipse(pen, rect);
+        }
+        public override void getAtributs(Color clr, int pWidth)
+        {
+            this.pWidth = pWidth;
+            this.clr = clr;
+
         }
     }
 }

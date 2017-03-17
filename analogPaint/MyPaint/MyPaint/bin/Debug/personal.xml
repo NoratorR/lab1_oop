@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<SaveData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <clr />
+  <pWidth>5</pWidth>
+  <x>5</x>
+  <y>6</y>
+  <h>8</h>
+  <w>7</w>
+  <one>
+    <X>0</X>
+    <Y>0</Y>
+  </one>
+  <two>
+    <X>0</X>
+    <Y>0</Y>
+  </two>
+</SaveData><?xml version="1.0"?>
+<SaveData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <clr>Color [Black]</clr>
+  <pWidth>0</pWidth>
+  <x>69</x>
+  <y>53</y>
+  <h>292</h>
+  <w>290</w>
+  <one>
+    <X>69</X>
+    <Y>53</Y>
+  </one>
+  <two>
+    <X>361</X>
+    <Y>343</Y>
+  </two>
+  <temp>MyPaint.DrawCiricle</temp>
+</SaveData><?xml version="1.0"?>
+<SaveData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <clr>Color [Black]</clr>
+  <pWidth>0</pWidth>
+  <x>174</x>
+  <y>69</y>
+  <h>347</h>
+  <w>215</w>
+  <one>
+    <X>174</X>
+    <Y>69</Y>
+  </one>
+  <two>
+    <X>521</X>
+    <Y>284</Y>
+  </two>
+  <temp>MyPaint.DrawRectangle</temp>
+</SaveData><?xml version="1.0"?>
+<SaveData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <clr>Color [Black]</clr>
+  <pWidth>0</pWidth>
+  <x>27</x>
+  <y>101</y>
+  <h>55</h>
+  <w>270</w>
+  <one>
+    <X>27</X>
+    <Y>101</Y>
+  </one>
+  <two>
+    <X>82</X>
+    <Y>371</Y>
+  </two>
+  <temp>MyPaint.DrawStrangefigure</temp>
+</SaveData><?xml version="1.0"?>
+<SaveData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <clr>Color [Black]</clr>
+  <pWidth>0</pWidth>
+  <x>293</x>
+  <y>84</y>
+  <h>139</h>
+  <w>156</w>
+  <one>
+    <X>293</X>
+    <Y>84</Y>
+  </one>
+  <two>
+    <X>432</X>
+    <Y>240</Y>
+  </two>
+  <temp>MyPaint.DrawCiricle</temp>
+</SaveData>
