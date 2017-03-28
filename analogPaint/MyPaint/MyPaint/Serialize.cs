@@ -23,8 +23,8 @@ namespace MyPaint
         {
              
                format = new XmlSerializer(typeof(List<SaveData>));
-               using (FileStream fs = File.Open(fileName, FileMode.Open))
-               format.Serialize(fs, Svd);
+              using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName, false))
+                format.Serialize(file, Svd);
               
         }
 

@@ -14,8 +14,10 @@ namespace MyPaint
     public partial class Form1 : Form
     {
         private Bitmap Bmp;
+        private bool startSelect,startMove = false;
+        private SaveData saveInfo;
         private List<SaveData> saveList = new List<SaveData>();
-        private List<Shape> shapelist = new List<Shape>();
+    
         private List<Shape> figureList = new List<Shape>()
         {
           new DrawRectangle(),
@@ -29,8 +31,10 @@ namespace MyPaint
         private Point two;
         private Color Current = Color.Black;
         private Shape temp;
-        private int x, y, w, h;
         private int penWidth;
+        private  Point CurPointForSelect;
+        private SaveData curSelectFig;
+        private bool startResize = false;
 
         public Form1()
         {
@@ -50,21 +54,14 @@ namespace MyPaint
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            if (temp != null && press)
-            {
-
-            }
-        }
-
-
+       
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             DrawPencil temp = new DrawPencil();
             temp.getAtributs(Current, penWidth);
             this.temp = temp;
+            startSelect = false;
 
         }
 
@@ -73,7 +70,7 @@ namespace MyPaint
             DrawCiricle temp = new DrawCiricle();
             temp.getAtributs(Current, penWidth);
             this.temp = temp;
-
+            startSelect = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -81,6 +78,7 @@ namespace MyPaint
             DrawRectangle temp = new DrawRectangle();
             temp.getAtributs(Current,penWidth);
             this.temp = temp;
+            startSelect = false;
 
         }
 
@@ -89,13 +87,14 @@ namespace MyPaint
             DrawTriangle temp = new DrawTriangle();
             temp.getAtributs(Current, penWidth);
             this.temp = temp;
-
+            startSelect = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             DrawStar temp = new DrawStar();
             this.temp = temp;
+            startSelect = false;
 
         }
 
@@ -105,19 +104,21 @@ namespace MyPaint
             DrawLine temp = new DrawLine();
             temp.getAtributs(Current, penWidth);
             this.temp = temp;
+            startSelect = false;
 
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            SetClear();
+            SetClear(true);
         }
 
-        private void SetClear()
+        private void SetClear(bool check)
         {
             pictureBox1.Image = null;
             Bmp.Dispose();
-            saveList.Clear();
+            if (check)
+               saveList.Clear();
             Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Bmp = bmp;
         }
@@ -133,35 +134,36 @@ namespace MyPaint
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (temp != null && press)
+
+            two = e.Location;
+            if (startMove)
+                MoveFigure();
+            if ((temp != null && press))
             {
-                two = e.Location;
-                if (temp is DrawLine)
+              
+                if (temp is DrawPencil)
                 {
 
-                    temp.Draw(Bmp, x, y, h, w, one, two);
+                    temp.Draw(Bmp, one, two);
                     pictureBox1.Image = Bmp;
                     one = two;
 
                 }
 
-
                 pictureBox1.Refresh();
-
-
             }
+          
+
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+    
             if (temp != null && press)
             {
-                if (!(temp is DrawLine))
-                {
-                    countCanvasPoints();
-                    temp.DrawE(x, y, h, w, one, two, e);
-
-                }
+                if (!(temp is DrawPencil))
+                    temp.DrawE( one, two, e);
+ 
             }
         }
 
@@ -172,6 +174,7 @@ namespace MyPaint
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
@@ -188,16 +191,20 @@ namespace MyPaint
 
             if (fileName != "")
             {
+      
                 Serialize srz = new Serialize(fileName);
                 srz.getSave(saveList);
+                SetClear(true);
             }
+           
 
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            temp = null;
             saveList.Clear();
-            SetClear();
+            SetClear(true);
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
@@ -223,10 +230,15 @@ namespace MyPaint
         {
             try
             {
+
                 temp = CountValue(svd);
-                shapelist.Add(temp);
-                temp.getAtributs(Color.Black,svd.pWidth);
-                temp.Draw(Bmp, svd.x, svd.y, svd.h, svd.w, svd.one, svd.two);
+               
+                temp.getAtributs(Color.FromArgb(svd.clr),svd.pWidth);
+                temp.Draw(Bmp, svd.one, svd.two);
+                pictureBox1.Image = Bmp;
+                temp = null;
+               // pictureBox1.Refresh();
+
             }
             catch(Exception ex)
             {
@@ -237,16 +249,19 @@ namespace MyPaint
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
+
+            press = false;
+            if (curSelectFig != null)
+                startMove = false;
             if (temp != null)
             {
-                press = false;
-
-                Bmp = temp.Draw(Bmp, x, y, h, w, one, two);
-                shapelist.Add(temp);
+               
+                Bmp = temp.Draw(Bmp, one, two);
                 pictureBox1.Image = Bmp;
-                SaveData svd = new SaveData(x, y, w, h, one, two, temp, penWidth, Current.ToString());
+               
+                SaveData svd = new SaveData( one, two, temp, penWidth, Current.ToArgb(), Current.ToArgb());
                 saveList.Add(svd);
-
+             
 
             }
 
@@ -254,9 +269,103 @@ namespace MyPaint
 
         private void selectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var select = new Selected();
-             
+            startMove = false;        //Select
+            startSelect = true;
+            temp = null;
         }
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            CurPointForSelect = e.Location;
+            if (startSelect)
+                SelectFigure();
+            if (startMove)
+                press = true;
+           
+           
+
+        }
+
+
+        public void SelectFigure()
+        {
+            Shape mShape;
+            temp = null;
+            var select = new Selected();
+            curSelectFig =  select.ChooseSelectFig(CurPointForSelect,ref saveList);
+            if (curSelectFig != null)
+            {
+                SetClear(false);
+
+                mShape = CountValue(curSelectFig);
+                mShape.ChangeColor(Bmp, Current, curSelectFig);
+                mShape.getAtributs(Color.Blue, 4);
+                mShape.Draw(Bmp, curSelectFig.one, curSelectFig.two);
+              
+                if (curSelectFig != null)
+                    foreach (SaveData svd in saveList)
+                        RedrawCanvas(svd);
+               
+               
+            }
+          
+            temp = null;
+         
+
+        }
+
+        public void MoveFigure()
+        {
+            Shape mShape;
+            var mov = new Move();
+            mov.DelateFromList(saveList, curSelectFig);
+        
+            curSelectFig =  mov.MoveToNextPosition(two, curSelectFig);
+
+            mShape = CountValue(curSelectFig);
+
+            mShape.getAtributs(Color.FromArgb(curSelectFig.clr),curSelectFig.pWidth);
+           Bmp = mShape.ChangeColor(Bmp,Current,curSelectFig);
+            Bmp = mShape.Draw(Bmp,curSelectFig.one,curSelectFig.two);
+           
+            saveList.Add(curSelectFig);
+            SetClear(false);
+            foreach (SaveData svd in saveList)
+                RedrawCanvas(svd);
+            temp = null;
+            pictureBox1.Image = Bmp;
+              
+        }
+
+        public void ResizeFigure()
+        {
+            Shape  shp;
+            SaveData temp;
+            int i =0;
+            if (curSelectFig != null)
+            {
+               
+                shp = CountValue(curSelectFig);
+                shp.getAtributs(Color.FromArgb(curSelectFig.clr),curSelectFig.pWidth);
+                Bmp =  shp.ChangeColor(Bmp,Current,curSelectFig);
+                Bmp = shp.Draw(Bmp,curSelectFig.one,curSelectFig.two);
+                pictureBox1.Image = Bmp;
+                SaveData fig = new SaveData(curSelectFig.one, curSelectFig.two, shp, curSelectFig.clr, curSelectFig.pWidth, Current.ToArgb());  
+                foreach (SaveData svd in saveList)
+                    if(svd == curSelectFig)
+                    {
+
+                        saveList[i] = fig;
+                        break;
+                       i++;
+                    }
+                temp = fig;
+
+            }
+            startResize = false;
+        }
+
+
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -266,19 +375,26 @@ namespace MyPaint
                 one = e.Location;
 
             }
+
         }
 
-
-
-        public void countCanvasPoints()
+        private void moveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            x = Math.Min(one.X, two.X);
-            y = Math.Min(one.Y, two.Y);
-            h = Math.Abs(one.X - two.X);
-            w = Math.Abs(one.Y - two.Y);
+            if (curSelectFig != null)
+                startMove = true;       
+            startSelect = false ;
+
+            temp = null;
         }
 
-
+        private void resizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            startMove = false;
+            startSelect = false;
+            if (curSelectFig != null)
+                ResizeFigure();
+                
+        }
 
         public Shape CountValue(SaveData svd)
         {

@@ -18,7 +18,7 @@ namespace MyPaint
         { }
 
 
-        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
+        public override Bitmap Draw(Bitmap bmp,  Point first, Point second)
         {
             Pen pen = new Pen(clr);
             pen.Width = pWidth;
@@ -30,7 +30,7 @@ namespace MyPaint
 
             return bmp;
         }
-        public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
+        public override void DrawE( Point first, Point second, PaintEventArgs e)
         {
             
             Pen pen = new Pen(clr);
@@ -44,6 +44,15 @@ namespace MyPaint
         {
             this.pWidth = pWidth;
             this.clr = clr;
+
+        }
+        public override Bitmap ChangeColor(Bitmap bmp, Color Current, SaveData svd)
+        {
+            Graphics graph = Graphics.FromImage(bmp);
+            var brush = new SolidBrush(Current);
+            PointF[] po = { new PointF(svd.one.X, svd.one.Y), new PointF(svd.one.X, svd.two.X), new  PointF(svd.one.X, svd.two.Y) };
+            graph.FillPolygon(brush, po);
+            return bmp;
 
         }
     }

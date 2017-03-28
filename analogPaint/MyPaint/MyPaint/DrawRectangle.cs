@@ -18,22 +18,22 @@ namespace MyPaint
         { }
 
      
-
-        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
+        public override Bitmap Draw(Bitmap bmp, Point first, Point second)
         {
             Graphics graph = Graphics.FromImage(bmp);
             Pen pen = new Pen(clr);
             pen.Width = pWidth;
-            graph.DrawRectangle(pen, x, y, h, w);
+            graph.DrawRectangle(pen, Math.Min(first.X, second.X), Math.Min(first.Y, second.Y), Math.Abs(first.X - second.X), Math.Abs(first.Y - second.Y));
             graph.Save();
-
+            
+     
             return bmp;
         }
-        public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
+        public override void DrawE( Point first, Point second, PaintEventArgs e)
         {
             Pen pen = new Pen(clr);
             pen.Width = pWidth;
-            Rectangle rect = new Rectangle(x, y, h, w);
+            Rectangle rect = new Rectangle(Math.Min(first.X, second.X), Math.Min(first.Y, second.Y), Math.Abs(first.X - second.X), Math.Abs(first.Y - second.Y));
             e.Graphics.DrawRectangle(pen, rect);
         }
 
@@ -43,6 +43,16 @@ namespace MyPaint
             this.clr = clr;
 
         }
+
+        public override Bitmap ChangeColor(Bitmap bmp, Color Current, SaveData svd)
+        {
+            Graphics graph = Graphics.FromImage(bmp);
+            var brush = new SolidBrush(Current);
+            graph.FillRectangle(brush,new Rectangle (Math.Min(svd.one.X, svd.two.X), Math.Min(svd.one.Y, svd.two.Y), Math.Abs(svd.one.X - svd.two.X), Math.Abs(svd.one.Y - svd.two.Y)));
+            return bmp;
+
+        }
+
     }
 
     

@@ -11,10 +11,10 @@ namespace MyPaint
     [Serializable]
     public abstract class Shape
     {
-        public abstract Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second);
-        public abstract void DrawE(int x, int y, int h, int w, Point first, Point second,PaintEventArgs e);
+        public abstract Bitmap Draw(Bitmap bmp, Point first, Point second);
+        public abstract void DrawE( Point first, Point second,PaintEventArgs e);
         public abstract void getAtributs(Color clr,int pwidth);
-
+        public abstract Bitmap ChangeColor(Bitmap bmp, Color Current, SaveData svd);
 
     }
 
