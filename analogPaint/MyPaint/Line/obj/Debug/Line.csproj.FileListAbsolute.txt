@@ -1,0 +1,11 @@
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\bin\Debug\Line.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\bin\Debug\Line.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\bin\Debug\Interfase.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\bin\Debug\SaveData.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\bin\Debug\Shape.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\bin\Debug\Interfase.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\bin\Debug\SaveData.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\bin\Debug\Shape.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\obj\Debug\Line.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\obj\Debug\Line.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Line\obj\Debug\Line.pdb

@@ -1,0 +1,11 @@
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\bin\Debug\Star.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\bin\Debug\Star.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\bin\Debug\Interfase.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\bin\Debug\SaveData.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\bin\Debug\Shape.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\bin\Debug\Interfase.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\bin\Debug\SaveData.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\bin\Debug\Shape.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\obj\Debug\Star.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\obj\Debug\Star.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Star\obj\Debug\Star.pdb

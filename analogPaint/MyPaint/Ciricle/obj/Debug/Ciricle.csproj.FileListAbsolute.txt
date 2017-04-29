@@ -1,0 +1,11 @@
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\bin\Debug\Ciricle.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\bin\Debug\Ciricle.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\bin\Debug\Interfase.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\bin\Debug\SaveData.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\bin\Debug\Shape.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\bin\Debug\Interfase.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\bin\Debug\SaveData.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\bin\Debug\Shape.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\obj\Debug\Ciricle.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\obj\Debug\Ciricle.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Ciricle\obj\Debug\Ciricle.csprojResolveAssemblyReference.cache

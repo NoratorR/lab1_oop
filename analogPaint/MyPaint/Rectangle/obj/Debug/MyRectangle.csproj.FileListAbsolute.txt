@@ -1,0 +1,11 @@
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\bin\Debug\Rectangle.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\bin\Debug\Rectangle.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\bin\Debug\Interfase.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\bin\Debug\SaveData.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\bin\Debug\Shape.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\bin\Debug\Interfase.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\bin\Debug\SaveData.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\bin\Debug\Shape.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\obj\Debug\Rectangle.dll
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\obj\Debug\Rectangle.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\Rectangle\obj\Debug\MyRectangle.csprojResolveAssemblyReference.cache

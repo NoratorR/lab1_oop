@@ -1,0 +1,9 @@
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\GetSignature\bin\Debug\GetSignature.exe.config
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\GetSignature\bin\Debug\GetSignature.exe
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\GetSignature\bin\Debug\GetSignature.pdb
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\GetSignature\obj\Debug\GetSignature.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\GetSignature\obj\Debug\GetSignature.Form1.resources
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\GetSignature\obj\Debug\GetSignature.Properties.Resources.resources
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\GetSignature\obj\Debug\GetSignature.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\GetSignature\obj\Debug\GetSignature.exe
+C:\Users\admin\Desktop\univer\2_курс\2_сем\лабы\ооп\analogPaint\MyPaint\GetSignature\obj\Debug\GetSignature.pdb

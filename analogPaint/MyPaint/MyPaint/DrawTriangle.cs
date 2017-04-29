@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace MyPaint
 {
-    class DrawTriangle : Shape
+    class DrawTriangle : Shape, ISelected, IEditable
     {
 
         private Color clr;
@@ -22,7 +22,7 @@ namespace MyPaint
         {
             Pen pen = new Pen(clr);
             pen.Width = pWidth;
-            Point[] point = { new Point(first.X, first.Y), new Point(second.X, second.X), new Point(first.X, second.Y) };
+            Point[] point = { new Point(first.X, first.Y), new Point(second.X, second.Y), new Point(first.X, second.Y) };
 
             Graphics graph = Graphics.FromImage(bmp);
             graph.DrawPolygon(pen, point);
@@ -35,7 +35,7 @@ namespace MyPaint
             
             Pen pen = new Pen(clr);
             pen.Width = pWidth;
-            PointF[] point = { new PointF(first.X, first.Y), new PointF(second.X,second.X), new PointF(first.X, second.Y) };
+            PointF[] point = { new PointF(first.X, first.Y), new PointF(second.X,second.Y), new PointF(first.X, second.Y) };
 
             e.Graphics.DrawPolygon(pen, point);
             
@@ -54,6 +54,27 @@ namespace MyPaint
             graph.FillPolygon(brush, po);
             return bmp;
 
+        }
+        public new bool isSelected(Point point, SaveData shpCheck)
+        {
+            if ((point.X >= shpCheck.one.X && point.X <= shpCheck.two.X) && (point.Y >= shpCheck.one.Y && point.Y <= shpCheck.two.Y))
+                return true;
+            else
+                return false;
+        }
+        public  new SaveData MoveToNextPosition(Point shpSel, SaveData shp)
+        {
+            try
+            {
+                shp.two.X = shpSel.X + (Math.Abs(shp.one.X - shp.two.X));
+                shp.two.Y = shpSel.Y + (Math.Abs(shp.one.Y - shp.two.Y));
+                shp.one.X = shpSel.X; shp.one.Y = shpSel.Y;
+                return shp;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

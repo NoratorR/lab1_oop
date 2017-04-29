@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interfase">
+      <HintPath>..\Interfase\bin\Debug\Interfase.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SaveData">
+      <HintPath>..\SaveData\bin\Debug\SaveData.dll</HintPath>
+    </Reference>
+    <Reference Include="Shape">
+      <HintPath>..\Shape\bin\Debug\Shape.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
@@ -52,27 +61,16 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Drawciricle.cs" />
-    <Compile Include="Drawline.cs" />
+    <Compile Include="CheckPlugin.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ISelectable.cs" />
-    <Compile Include="Move.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DrawRectangle.cs" />
-    <Compile Include="Resize.cs" />
-    <Compile Include="SaveData.cs" />
-    <Compile Include="Selected.cs" />
     <Compile Include="Serialize.cs" />
-    <Compile Include="Shape.cs" />
-    <Compile Include="DrawStar.cs" />
-    <Compile Include="DrawStrangefigure.cs" />
-    <Compile Include="DrawTriangle.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

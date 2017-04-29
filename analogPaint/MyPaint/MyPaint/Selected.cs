@@ -11,38 +11,19 @@ namespace MyPaint
    
     public class Selected : ISelected
     {
-       public  bool isSelected(Point point, SaveData shpCheck)
+        public bool isSelected(Point point, Shape shpCheck)
         {
-            if ((point.X >= shpCheck.one.X && point.X <= shpCheck.two.X) && (point.Y >= shpCheck.one.Y && point.Y <= shpCheck.two.Y))
-                return true;
-            else
-                return false;
+            /* if ((point.X >= shpCheck.one.X && point.X <= shpCheck.two.X) && (point.Y >= shpCheck.one.Y && point.Y <= shpCheck.two.Y))
+                 return true;
+             else
+                 return false;
+         }*/
+            return false;
         }
 
-        public SaveData ChooseSelectFig(Point point,ref List<SaveData> shp)
-        {
-            SaveData temp = null;
-        
-            try
-            {
-                foreach (SaveData svd in shp)
-                {
-
-                    if (isSelected(point, svd))
-                    {
-                        temp = svd;
-                        break;
-                    }
-                 
-                }
-                return temp;
-            }
-            catch
-            {
-                return null;
-            }
+       
          
           
         }
     }
-}
+

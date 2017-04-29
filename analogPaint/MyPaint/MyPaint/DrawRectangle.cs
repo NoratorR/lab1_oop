@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace MyPaint
 {
-    class DrawRectangle : Shape
+    class DrawRectangle : Shape, ISelected, IEditable
     {
 
         protected Color clr;
@@ -51,6 +51,28 @@ namespace MyPaint
             graph.FillRectangle(brush,new Rectangle (Math.Min(svd.one.X, svd.two.X), Math.Min(svd.one.Y, svd.two.Y), Math.Abs(svd.one.X - svd.two.X), Math.Abs(svd.one.Y - svd.two.Y)));
             return bmp;
 
+        }
+        public new bool isSelected(Point point, SaveData shpCheck)
+        {
+            if ((point.X >= shpCheck.one.X && point.X <= shpCheck.two.X) && (point.Y >= shpCheck.one.Y && point.Y <= shpCheck.two.Y))
+                return true;
+            else
+                return false;
+        }
+
+        public new SaveData MoveToNextPosition(Point shpSel, SaveData shp)
+        {
+            try
+            {
+                shp.two.X = shpSel.X + (Math.Abs(shp.one.X - shp.two.X));
+                shp.two.Y = shpSel.Y + (Math.Abs(shp.one.Y - shp.two.Y));
+                shp.one.X = shpSel.X; shp.one.Y = shpSel.Y;
+                return shp;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
     }

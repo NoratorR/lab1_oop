@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
+using System.IO;
+using Interfase;
 
 namespace MyPaint
 {
@@ -17,15 +20,10 @@ namespace MyPaint
         private bool startSelect,startMove = false;
         private SaveData saveInfo;
         private List<SaveData> saveList = new List<SaveData>();
-    
-        private List<Shape> figureList = new List<Shape>()
-        {
-          new DrawRectangle(),
-          new DrawPencil(),
-          new DrawTriangle(),
-          new DrawLine(),
-          new DrawCiricle()
-        };
+
+        private List<Shape> figureList = new List<Shape>();
+        private List<string> figuresName = new List<string>();
+        
         private bool press = false;
         private Point one;
         private Point two;
@@ -35,6 +33,8 @@ namespace MyPaint
         private  Point CurPointForSelect;
         private SaveData curSelectFig;
         private bool startResize = false;
+
+        private List<string> dllList = new List<string>();
 
         public Form1()
         {
@@ -51,62 +51,38 @@ namespace MyPaint
             {
                 comboBox1.Items.Add(i);
             }
+            string[] dlls;
+            dlls = Directory.GetFiles(Application.StartupPath + "\\Shapes", "*.dll");
+            foreach(string dll in dlls)
+            {
+                CheckPlugin chk = new CheckPlugin(dll);
+                if (chk.CheckIfCorrect())
+                    dllList.Add(dll);
+                else
+                    MessageBox.Show("Incorrect hash sum in" + dll, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+            ConnectPlugins(dllList);
 
         }
 
        
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void MyClickHandler(object sender, EventArgs e)
         {
-            DrawPencil temp = new DrawPencil();
+
+            Button btn = (Button)sender;
+            foreach (Shape fig in figureList)
+                if (fig.ToString().Contains(btn.Text))
+                    temp = fig;
+    
             temp.getAtributs(Current, penWidth);
-            this.temp = temp;
             startSelect = false;
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            DrawCiricle temp = new DrawCiricle();
-            temp.getAtributs(Current, penWidth);
-            this.temp = temp;
-            startSelect = false;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            DrawRectangle temp = new DrawRectangle();
-            temp.getAtributs(Current,penWidth);
-            this.temp = temp;
-            startSelect = false;
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            DrawTriangle temp = new DrawTriangle();
-            temp.getAtributs(Current, penWidth);
-            this.temp = temp;
-            startSelect = false;
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            DrawStar temp = new DrawStar();
-            this.temp = temp;
-            startSelect = false;
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-            DrawLine temp = new DrawLine();
-            temp.getAtributs(Current, penWidth);
-            this.temp = temp;
-            startSelect = false;
-
-        }
+      
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -141,14 +117,14 @@ namespace MyPaint
             if ((temp != null && press))
             {
               
-                if (temp is DrawPencil)
+              /*  if (temp is DrawPencil)
                 {
 
                     temp.Draw(Bmp, one, two);
                     pictureBox1.Image = Bmp;
                     one = two;
 
-                }
+                }*/
 
                 pictureBox1.Refresh();
             }
@@ -161,7 +137,7 @@ namespace MyPaint
     
             if (temp != null && press)
             {
-                if (!(temp is DrawPencil))
+              //  if (!(temp is DrawPencil))
                     temp.DrawE( one, two, e);
  
             }
@@ -291,21 +267,25 @@ namespace MyPaint
         {
             Shape mShape;
             temp = null;
-            var select = new Selected();
-            curSelectFig =  select.ChooseSelectFig(CurPointForSelect,ref saveList);
-            if (curSelectFig != null)
+            foreach(SaveData save in saveList)
             {
-                SetClear(false);
+       
+                 temp = CountValue(save);
+                 ISelected itemp = temp;
+                 if (itemp.isSelected(CurPointForSelect,save))
+                {
+                    curSelectFig = save;
+                    SetClear(false);
+                    mShape = CountValue(curSelectFig);
+                   
+                    mShape.getAtributs(Color.Blue, 4);
+                    mShape.Draw(Bmp, curSelectFig.one, curSelectFig.two);
 
-                mShape = CountValue(curSelectFig);
-                mShape.ChangeColor(Bmp, Current, curSelectFig);
-                mShape.getAtributs(Color.Blue, 4);
-                mShape.Draw(Bmp, curSelectFig.one, curSelectFig.two);
-              
-                if (curSelectFig != null)
-                    foreach (SaveData svd in saveList)
-                        RedrawCanvas(svd);
-               
+                    if (curSelectFig != null)
+                        foreach (SaveData svd in saveList)
+                            RedrawCanvas(svd);
+                    break;
+                }
                
             }
           
@@ -316,25 +296,26 @@ namespace MyPaint
 
         public void MoveFigure()
         {
-            Shape mShape;
-            var mov = new Move();
-            mov.DelateFromList(saveList, curSelectFig);
+             Shape mShape;
+            
+            temp = CountValue(curSelectFig);
+            IEditable iedit = temp;
         
-            curSelectFig =  mov.MoveToNextPosition(two, curSelectFig);
 
-            mShape = CountValue(curSelectFig);
+             curSelectFig =  iedit.MoveToNextPosition(two, curSelectFig);
 
-            mShape.getAtributs(Color.FromArgb(curSelectFig.clr),curSelectFig.pWidth);
-           Bmp = mShape.ChangeColor(Bmp,Current,curSelectFig);
-            Bmp = mShape.Draw(Bmp,curSelectFig.one,curSelectFig.two);
-           
-            saveList.Add(curSelectFig);
-            SetClear(false);
-            foreach (SaveData svd in saveList)
-                RedrawCanvas(svd);
-            temp = null;
-            pictureBox1.Image = Bmp;
-              
+              mShape = CountValue(curSelectFig);
+             mShape.getAtributs(Color.FromArgb(curSelectFig.clr),curSelectFig.pWidth);
+             Bmp = mShape.ChangeColor(Bmp,Current,curSelectFig);
+             Bmp = mShape.Draw(Bmp,curSelectFig.one,curSelectFig.two);
+
+             saveList.Add(curSelectFig);
+             SetClear(false);
+             foreach (SaveData svd in saveList)
+                 RedrawCanvas(svd);
+             temp = null;
+         pictureBox1.Image = Bmp;  
+
         }
 
         public void ResizeFigure()
@@ -362,7 +343,7 @@ namespace MyPaint
                 temp = fig;
 
             }
-            startResize = false;
+          startResize = false; 
         }
 
 
@@ -403,6 +384,32 @@ namespace MyPaint
                 if (shp.ToString() == svd.temp)
                     return shp;
             return null;
+        }
+
+     
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void ConnectPlugins(List<string> path)
+        {
+            Shape cur;
+            int i = 0;
+            foreach (string lib in path)
+            {
+                Assembly asm = Assembly.LoadFile(lib);
+                Type[] typ = asm.GetTypes();
+                cur = (MyPaint.Shape)Activator.CreateInstance(typ[0]);
+                figureList.Add(cur);
+                Button btn = new Button();
+                btn.Text = cur.GetName();
+                btn.Location = new Point(10, 25 * (i + 1));
+                btn.Click += new EventHandler(MyClickHandler);
+                Controls.Add(btn);
+                i++;
+            }
         }
     }
 }

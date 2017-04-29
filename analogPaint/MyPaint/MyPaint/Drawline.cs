@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace MyPaint
 {
-    class DrawPencil : Shape
+    class DrawPencil : Shape, ISelected, IEditable
     {
         private Color clr;
         private int pWidth;
@@ -49,6 +49,28 @@ namespace MyPaint
             graph.FillPolygon(brush, po);
             return bmp;
 
+        }
+        public new bool isSelected(Point point, SaveData shpCheck)
+        {
+            if ((point.X >= shpCheck.one.X && point.X <= shpCheck.two.X) && (point.Y >= shpCheck.one.Y && point.Y <= shpCheck.two.Y))
+                return true;
+            else
+                return false;
+        }
+
+        public new  SaveData MoveToNextPosition(Point shpSel, SaveData shp)
+        {
+            try
+            {
+                shp.two.X = shpSel.X + (Math.Abs(shp.one.X - shp.two.X));
+                shp.two.Y = shpSel.Y + (Math.Abs(shp.one.Y - shp.two.Y));
+                shp.one.X = shpSel.X; shp.one.Y = shpSel.Y;
+                return shp;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

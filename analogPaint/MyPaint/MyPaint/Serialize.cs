@@ -30,13 +30,21 @@ namespace MyPaint
 
         public List<SaveData> getLoad(string filename)
         {
-            List<SaveData> temp = new List<SaveData>();
-            XmlSerializer deserializer = new XmlSerializer(typeof(List<SaveData>));
-            TextReader reader = new StreamReader(fileName);
-             object obj = deserializer.Deserialize(reader);
-            List<SaveData> XmlData = (List<SaveData>)obj;
-            reader.Close();
-            return XmlData;
+            try
+            {
+                List<SaveData> temp = new List<SaveData>();
+                XmlSerializer deserializer = new XmlSerializer(typeof(List<SaveData>));
+                TextReader reader = new StreamReader(fileName);
+                object obj = deserializer.Deserialize(reader);
+                List<SaveData> XmlData = (List<SaveData>)obj;
+                reader.Close();
+                return XmlData;
+            }
+            catch(Exception ex)
+            {
+                
+                return null;
+            }
         }
 
 
